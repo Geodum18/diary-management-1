@@ -8,12 +8,13 @@
 
 typedef struct s_d_list
 {
-    t_d_cell *head_0;
-    t_d_cell *head_1;
-    t_d_cell *head_2;
-    t_d_cell *head_3;
-    t_d_cell *head_4;
-    int max_level;
+    int max_levels;
+    t_d_cell **heads;
 } t_d_list;
 
+t_d_list *createList(int max_levels);
+void insertCell(t_d_list *myList, t_d_cell *myCell);
+void displayLevel(t_d_list *myList, int level);
+void displayAllLevels(t_d_list *myList);
+void insertSorted(t_d_list *myList, t_d_cell *myCell);
 #endif //DIARY_MANAGEMENT_LIST_H
