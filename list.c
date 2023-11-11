@@ -61,3 +61,70 @@ void insertSorted(t_d_list *myList, t_d_cell *myCell) {
         myCell->next[i] = current;
     }
 }
+
+void insertCells(t_d_list *myList, int nb_elements){
+    for(int i=1; i<nb_elements; i++){
+        t_d_cell *myCell= createCell(i, 1);
+        insertSorted(myList, myCell);
+    }
+}
+
+
+void insertLevelCells(t_d_list *myList, int nb_elements){
+    for(int i=1; i<nb_elements; i++){
+        if (i%16==0) {
+            t_d_cell *myCell16 = createCell(i, 5);
+            insertSorted(myList, myCell16);
+        } else if (i%8==0) {
+            t_d_cell *myCell8 = createCell(i, 4);
+            insertSorted(myList, myCell8);
+        } else if (i%4==0) {
+            t_d_cell *myCell4 = createCell(i, 3);
+            insertSorted(myList, myCell4);
+        } else if (i%2==0) {
+            t_d_cell *myCell2 = createCell(i, 2);
+            insertSorted(myList, myCell2);
+        } else {
+            t_d_cell *myCell= createCell(i, 1);
+            insertSorted(myList, myCell);
+        }
+    }
+}
+
+int searchValue(t_d_list *myList, int value){
+    if (myList->heads == NULL){
+        return 0;
+    }
+
+    t_d_cell *current = myList->heads[0];
+    while (current != NULL){
+        if (current->value == value){
+            return 1;
+        }
+        current = *current->next;
+    }
+
+    return 0;
+}
+
+
+int searchLevelValue(t_d_list *myList, int value) {
+    if (myList->heads[0] == NULL) {
+        return 0;
+    }
+
+    t_d_cell *current = myList->heads[myList->max_levels - 1];
+
+    for (int i = myList->max_levels - 1; i >= 0; i--) {
+
+        while (current->next[i] != NULL && current->next[i]->value < value) {
+            current = current->next[i];
+        }
+
+        if (current->next[i] != NULL && current->next[i]->value == value) {
+            return 1;
+        }
+    }
+
+    return 0;
+}
