@@ -4,22 +4,33 @@
 
 #include "cell.h"
 #include "list.h"
+#include "stdio.h"
+#include "timer.h"
 
 int main(){
 
     t_d_list *myList = createList(5);
 
-    t_d_cell *Cell1 = createCell(5, 3);
-    t_d_cell *Cell2 = createCell(8, 2);
-    t_d_cell *Cell3 = createCell(2, 4);
-    t_d_cell *Cell4 = createCell(8, 3);
+    insertLevelCells(myList, 100);
 
-    insertSorted(myList, Cell1);
-    insertSorted(myList, Cell2);
-    insertSorted(myList, Cell3);
-    insertSorted(myList, Cell4);
+    int result = searchLevelValue(myList, 52);
 
-    displayAllLevels(myList);
+    if (result == 1){
+        printf("Value founded!\n");
+    } else {
+        printf("Value not found!\n");
+    }
+
+    //algo 2 without levels.
+
+    int result2 = searchValue(myList, 52);
+
+
+    if (result2 == 1){
+        printf("Value founded!\n");
+    } else {
+        printf("Value not found!\n");
+    }
 
     return 0;
 }
