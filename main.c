@@ -16,7 +16,7 @@ int main(){
     int result = searchLevelValue(myList, 52);
 
     if (result == 1){
-        printf("Value founded!\n");
+        printf("Value found!\n");
     } else {
         printf("Value not found!\n");
     }
@@ -27,7 +27,7 @@ int main(){
 
 
     if (result2 == 1){
-        printf("Value founded!\n");
+        printf("Value found!\n");
     } else {
         printf("Value not found!\n");
     }
