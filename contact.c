@@ -51,14 +51,13 @@ void insertStringInSortedFile(const char *myString) {
                 fprintf(file, "\n");
             }
         }
-
         fclose(file);
     } else {
         printf("We could not open the file contacts.txt\n");
     }
 }
 
-contact *createContact(char *firstName, char *lastName){
+contact *createContact(char *firstName, char *lastName, int nbLevels){
     toLowerCase(firstName);
     toLowerCase(lastName);
 
@@ -67,31 +66,52 @@ contact *createContact(char *firstName, char *lastName){
     strcpy(fullName, lastName);
     strcat(fullName, "_");
     strcat(fullName, firstName);
-    printf("New contact %s created", fullName);
+    printf("New contact %s created\n", fullName);
+
+    char *contactName = (char*)malloc(totalLength);
+    strcpy(contactName, fullName);
+
     insertStringInSortedFile(fullName);
 
     contact *newContact = (contact*)malloc(sizeof (contact));
-    newContact->name = fullName;
+    newContact->name = contactName;
     newContact->myAppointments = NULL;
+    newContact->nb_appointments=0;
     newContact->nb_levels = 5;
-    newContact->next = NULL;
+    newContact->next = (contact**)malloc(sizeof(contact*) *nbLevels);
 
     return newContact;
 }
 
-void displayContacts(){
+contact *initializeContact(char *fullname, int nbLevels){
+    contact *Contact = (contact*)malloc(sizeof (contact));
+    Contact->name = (char*)malloc(strlen(fullname) + 1);
+    strcpy(Contact->name, fullname);
+    Contact->nb_appointments=0;
+    Contact->myAppointments = NULL;
+    Contact->nb_levels = 5;
+    Contact->next = (contact**)malloc(sizeof(contact*) *nbLevels);
+
+    return Contact;
+}
+
+/*
+void displayContactsFile(){
     FILE *file = fopen("../data/contacts.txt", "r+");
 
     if(file != NULL){
         char line[100];
-        printf("Display the first 100 contacts :");
+        int i=1;
+        printf("Display the first 100 contacts :\n");
+        printf("-------------------\n");
         while (fgets(line, sizeof(line), file) != NULL) {
-            printf("%s", line);
+            printf("%d - %s",i, line);
+            i++;
         }
-
+        printf("\n");
         fclose(file);
     } else {
         printf("There is no contact.");
     }
-    printf("\n---------------------------------");
 }
+*/

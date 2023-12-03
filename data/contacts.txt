@@ -1,12 +1,6 @@
-andre_thomas
-bateman_patrick
-braham_kenza
-hislaire_louis
-jane_patrick
-lebali_chap
-litt_louis
+hilaire_louis
+lebras_valentin
 marchal_thomas
 ross_mike
 rougier_jules
 specter_harvey
-thierry_albran

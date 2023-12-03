@@ -4,18 +4,23 @@
 
 #ifndef DIARY_MANAGEMENT_APPOINTMENTS_H
 #define DIARY_MANAGEMENT_APPOINTMENTS_H
+struct s_contact;
 
-#endif //DIARY_MANAGEMENT_APPOINTMENTS_H
-
-
-typedef struct {
+typedef struct s_appointment{
     int DateDay;
     int DateMonth; 
     int DateYear;
     int TimeHour;
     int TimeMinute;
-    int LengthHour;
     int LengthMinute;
-
     char *Purpose;
-}appointment;
+} appointment;
+
+void insertAppointmentAtBeginning(appointment *myAppointment, char *owner);
+appointment *createAppointment(int day, int month, int year, int hour, int lengthMinute, char *purpose, char *owner);
+void addAppointmentToContact(struct s_contact *myContact, appointment *newAppointment);
+void displayAppointment(appointment *myAppointment);
+void displayAppointments(struct s_contact *myContact);
+void displayFileAppointments(char* fullname);
+
+#endif //DIARY_MANAGEMENT_APPOINTMENTS_H
