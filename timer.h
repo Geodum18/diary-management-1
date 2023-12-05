@@ -45,4 +45,5 @@ void displayTime();
  */
 char *getTimeAsString();
 
+void complexityTest();
 #endif //UNTITLED1_TIMER_H

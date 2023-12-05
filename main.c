@@ -113,7 +113,8 @@ int main(){
             }
 
         } else if (choice == 8){
-
+            printf("You will now test the complexity of a standard search algorithm VS a level based algorithm.\n\n");
+            complexityTest();
         } else if (choice == 9){
             printf("See you!");
             break;
